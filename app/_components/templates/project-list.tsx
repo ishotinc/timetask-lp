@@ -2,6 +2,7 @@
 
 import { Card, CardContent } from "@/app/_components/atoms/card";
 import { PlusCircle, Calendar } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // プロジェクトの型定義
 type Project = {
@@ -33,6 +34,12 @@ function formatDuration(minutes: number): string {
 }
 
 export function ProjectList() {
+  const router = useRouter();
+
+  const handleProjectClick = (projectId: string) => {
+    projectId = "";
+    router.push(`/project/${projectId}`);
+  };
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">プロジェクト一覧</h1>
@@ -41,6 +48,7 @@ export function ProjectList() {
           <Card
             key={project.id}
             className="hover:shadow-lg transition-shadow duration-300"
+            onClick={() => handleProjectClick(project.id)}
           >
             <CardContent className="p-4">
               <h2 className="text-lg font-semibold mb-2">{project.name}</h2>
