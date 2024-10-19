@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Clock, BarChart2, Users, Play } from "lucide-react";
+import Link from "next/link";
 import "@/app/globals.css";
 
 export function LandingPageComponent() {
@@ -80,9 +81,12 @@ export function LandingPageComponent() {
             </nav>
           </div>
           <div className="flex items-center">
-            <button className="text-gray-600 hover:text-teal-600 mr-4">
+            <Link
+              href="/project-list"
+              className="text-gray-600 hover:text-teal-600 mr-4"
+            >
               ログイン
-            </button>
+            </Link>
             <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md flex items-center">
               アカウント登録
               <Play className="ml-2 h-4 w-4" />
