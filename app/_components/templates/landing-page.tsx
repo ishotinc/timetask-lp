@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Clock, BarChart2, Users, Play } from "lucide-react";
+import "@/app/globals.css";
 
 export function LandingPageComponent() {
   const parallaxRef = useRef<HTMLDivElement>(null);
