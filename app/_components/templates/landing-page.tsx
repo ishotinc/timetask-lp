@@ -82,7 +82,7 @@ export function LandingPageComponent() {
           </div>
           <div className="flex items-center">
             <Link
-              href="/project-list"
+              href="/login"
               className="text-gray-600 hover:text-teal-600 mr-4"
             >
               ログイン
