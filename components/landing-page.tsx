@@ -1,46 +1,52 @@
-"use client"
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react'
-import { Clock, BarChart2, Users, Play } from "lucide-react"
+import React, { useEffect, useRef, useState } from "react";
+import { Clock, BarChart2, Users, Play } from "lucide-react";
 
 export function LandingPageComponent() {
-  const parallaxRef = useRef<HTMLDivElement>(null)
-  const [time, setTime] = useState(0)
+  const parallaxRef = useRef<HTMLDivElement>(null);
+  const [time, setTime] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.scrollY
+      const scrolled = window.scrollY;
       if (parallaxRef.current) {
-        parallaxRef.current.style.transform = `translateY(${scrolled * 0.5}px)`
+        parallaxRef.current.style.transform = `translateY(${scrolled * 0.5}px)`;
       }
-    }
+    };
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll);
 
     const timer = setInterval(() => {
-      setTime(prevTime => (prevTime + 10) % 1000000) // Reset at 1,000,000 ms
-    }, 10) // Update every 10ms for a faster animation
+      setTime((prevTime) => (prevTime + 10) % 1000000); // Reset at 1,000,000 ms
+    }, 10); // Update every 10ms for a faster animation
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      clearInterval(timer)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+      clearInterval(timer);
+    };
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId)
+    const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' })
+      section.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   const formatTime = (time: number) => {
-    const hours = Math.floor(time / 360000).toString().padStart(2, '0')
-    const minutes = Math.floor((time % 360000) / 6000).toString().padStart(2, '0')
-    const seconds = Math.floor((time % 6000) / 100).toString().padStart(2, '0')
-    const milliseconds = (time % 100).toString().padStart(2, '0')
-    return `${hours}:${minutes}:${seconds}.${milliseconds}`
-  }
+    const hours = Math.floor(time / 360000)
+      .toString()
+      .padStart(2, "0");
+    const minutes = Math.floor((time % 360000) / 6000)
+      .toString()
+      .padStart(2, "0");
+    const seconds = Math.floor((time % 6000) / 100)
+      .toString()
+      .padStart(2, "0");
+    const milliseconds = (time % 100).toString().padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -52,13 +58,30 @@ export function LandingPageComponent() {
               <span className="text-lg font-bold">TimeTrack</span>
             </a>
             <nav className="hidden md:ml-6 md:flex md:space-x-4">
-              <button onClick={() => scrollToSection('features')} className="text-gray-600 hover:text-teal-600">機能</button>
-              <button onClick={() => scrollToSection('how-it-works')} className="text-gray-600 hover:text-teal-600">使い方</button>
-              <button onClick={() => scrollToSection('cta')} className="text-gray-600 hover:text-teal-600">始める</button>
+              <button
+                onClick={() => scrollToSection("features")}
+                className="text-gray-600 hover:text-teal-600"
+              >
+                機能
+              </button>
+              <button
+                onClick={() => scrollToSection("how-it-works")}
+                className="text-gray-600 hover:text-teal-600"
+              >
+                使い方
+              </button>
+              <button
+                onClick={() => scrollToSection("cta")}
+                className="text-gray-600 hover:text-teal-600"
+              >
+                始める
+              </button>
             </nav>
           </div>
           <div className="flex items-center">
-            <button className="text-gray-600 hover:text-teal-600 mr-4">ログイン</button>
+            <button className="text-gray-600 hover:text-teal-600 mr-4">
+              ログイン
+            </button>
             <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md flex items-center">
               アカウント登録
               <Play className="ml-2 h-4 w-4" />
@@ -107,22 +130,36 @@ export function LandingPageComponent() {
 
         <section id="features" className="bg-gray-50 py-12 md:py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-teal-600 sm:text-4xl">主な機能</h2>
+            <h2 className="text-3xl font-bold text-center text-teal-600 sm:text-4xl">
+              主な機能
+            </h2>
             <div className="mt-12 grid gap-8 md:grid-cols-3">
               <div className="text-center">
                 <Clock className="mx-auto h-12 w-12 text-teal-500" />
-                <h3 className="mt-4 text-xl font-semibold text-gray-900">簡単な時間記録</h3>
-                <p className="mt-2 text-gray-600">ワンクリックで時間の記録を開始。プロジェクトや作業ごとに簡単に時間を追跡できます。</p>
+                <h3 className="mt-4 text-xl font-semibold text-gray-900">
+                  簡単な時間記録
+                </h3>
+                <p className="mt-2 text-gray-600">
+                  ワンクリックで時間の記録を開始。プロジェクトや作業ごとに簡単に時間を追跡できます。
+                </p>
               </div>
               <div className="text-center">
                 <BarChart2 className="mx-auto h-12 w-12 text-teal-500" />
-                <h3 className="mt-4 text-xl font-semibold text-gray-900">詳細なレポート</h3>
-                <p className="mt-2 text-gray-600">プロジェクトごとの時間使用状況を可視化。効率的な時間管理をサポートします。</p>
+                <h3 className="mt-4 text-xl font-semibold text-gray-900">
+                  詳細なレポート
+                </h3>
+                <p className="mt-2 text-gray-600">
+                  プロジェクトごとの時間使用状況を可視化。効率的な時間管理をサポートします。
+                </p>
               </div>
               <div className="text-center">
                 <Users className="mx-auto h-12 w-12 text-teal-500" />
-                <h3 className="mt-4 text-xl font-semibold text-gray-900">チーム連携</h3>
-                <p className="mt-2 text-gray-600">チームメンバーの作業時間を簡単に把握。プロジェクトの進捗状況を共有できます。</p>
+                <h3 className="mt-4 text-xl font-semibold text-gray-900">
+                  チーム連携
+                </h3>
+                <p className="mt-2 text-gray-600">
+                  チームメンバーの作業時間を簡単に把握。プロジェクトの進捗状況を共有できます。
+                </p>
               </div>
             </div>
           </div>
@@ -130,7 +167,9 @@ export function LandingPageComponent() {
 
         <section id="how-it-works" className="py-12 md:py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-teal-600 sm:text-4xl">使い方</h2>
+            <h2 className="text-3xl font-bold text-center text-teal-600 sm:text-4xl">
+              使い方
+            </h2>
             <div className="mt-12 grid gap-12 lg:grid-cols-2">
               <div>
                 <div className="relative aspect-[16/9] overflow-hidden rounded-lg shadow-lg">
@@ -170,7 +209,9 @@ export function LandingPageComponent() {
 
         <section id="cta" className="bg-teal-600 py-12 md:py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">今すぐ始めましょう</h2>
+            <h2 className="text-3xl font-bold text-white sm:text-4xl">
+              今すぐ始めましょう
+            </h2>
             <p className="mt-4 text-xl text-teal-100">
               TimeTrackを使って、あなたのチームの生産性を向上させませんか？無料で始められます。
             </p>
@@ -184,15 +225,31 @@ export function LandingPageComponent() {
 
       <footer className="bg-white border-t border-gray-200 py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm">© 2023 TimeTrack Inc. All rights reserved.</p>
+          <p className="text-gray-500 text-sm">
+            © 2023 TimeTrack Inc. All rights reserved.
+          </p>
           <nav className="mt-4 sm:mt-0">
             <ul className="flex space-x-4">
-              <li><a href="#" className="text-gray-500 hover:text-teal-600 text-sm">利用規約</a></li>
-              <li><a href="#" className="text-gray-500 hover:text-teal-600 text-sm">プライバシーポリシー</a></li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-500 hover:text-teal-600 text-sm"
+                >
+                  利用規約
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-gray-500 hover:text-teal-600 text-sm"
+                >
+                  プライバシーポリシー
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
       </footer>
     </div>
-  )
+  );
 }
