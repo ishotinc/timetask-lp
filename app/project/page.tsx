@@ -1,5 +1,5 @@
-import { Project } from "@/app/_components/templates/project";
+import { ProjectList } from "@/app/_components/templates/project-list";
 
 export default function Page() {
-  return <Project />;
+  return <ProjectList />;
 }

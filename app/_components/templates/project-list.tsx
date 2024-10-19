@@ -37,7 +37,6 @@ export function ProjectList() {
   const router = useRouter();
 
   const handleProjectClick = (projectId: string) => {
-    projectId = "";
     router.push(`/project/${projectId}`);
   };
   return (

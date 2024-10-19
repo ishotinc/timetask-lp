@@ -7,7 +7,7 @@ export async function login(formData: FormData) {
   const password = formData.get("password");
 
   if (email === "test@mail.com" && password === "test") {
-    redirect("/project-list");
+    redirect("/project");
   }
 
   return { error: "Invalid credentials" };

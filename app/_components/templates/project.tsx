@@ -1,5 +1,5 @@
 "use client";
 
-export function Project() {
-  return <div>Project</div>;
+export function Project({ projectId }: { projectId: string }) {
+  return <div>プロジェクト: {projectId}</div>;
 }

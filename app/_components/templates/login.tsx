@@ -24,7 +24,7 @@ export default function LoginForm() {
     if (result?.error) {
       setError(result.error);
     } else {
-      router.push("/project-list");
+      router.push("/project");
     }
   }
 
